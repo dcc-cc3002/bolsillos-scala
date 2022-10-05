@@ -32,4 +32,24 @@ class PokemonSpec extends AbstractPokemonSpec {
     salandit should not be theSameInstanceAs(scolipede)
     salandit should not equal scolipede
   }
+
+
+  test("A Pokémon can attack another Pokémon") {
+    salandit.attack(scolipede)
+    scolipede.currentHp shouldBe scolipedeHp - salanditStr / 10
+  }
+
+  test("A Pokémon can be KO") {
+    salandit.isKo shouldBe false
+    salandit.currentHp = 0
+    salandit.isKo shouldBe true
+  }
+
+  test("A Pokémon can be KOd by an attack") {
+    salandit.isKo shouldBe false
+    1 to 5 foreach {
+      _ => scolipede.attack(salandit)
+    }
+    salandit.isKo shouldBe true
+  }
 }
