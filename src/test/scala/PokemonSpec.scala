@@ -4,19 +4,26 @@ import org.scalatest.matchers.must.Matchers.not
 import org.scalatest.matchers.should.Matchers.{convertToAnyShouldWrapper, theSameInstanceAs}
 
 class PokemonSpec extends AbstractPokemonSpec {
-  var salandit: Pokemon = _
-  var scolipede: Pokemon = _
+  private val salanditName = "Salandit"
+  private val salanditHp = 48
+  private val salanditStr = 44
+  private val scolipedeName = "Scolipede"
+  private val scolipedeHp = 60
+  private val scolipedeStr = 100
+
+  private var salandit: Pokemon = _
+  private var scolipede: Pokemon = _
 
   before {
-    salandit = new Pokemon("Salandit", 48, 44)
-    scolipede = new Pokemon("Scolipede", 60, 100)
+    salandit = new Pokemon(salanditName, salanditHp, salanditStr)
+    scolipede = new Pokemon(scolipedeName, scolipedeHp, scolipedeStr)
   }
 
   test("Two Pokémon with the same parameters should be equal") {
-    val salandit2 = new Pokemon("Salandit", 48, 44)
+    val salandit2 = new Pokemon(salanditName, salanditHp, salanditStr)
     salandit should not be theSameInstanceAs(salandit2)
     salandit shouldBe salandit2
-    val scolipede2 = new Pokemon("Scolipede", 60, 100)
+    val scolipede2 = new Pokemon(scolipedeName, scolipedeHp, scolipedeStr)
     scolipede should not be theSameInstanceAs(scolipede2)
     scolipede shouldBe scolipede2
   }
