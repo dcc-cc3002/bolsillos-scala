@@ -20,12 +20,14 @@ class PokemonSpec extends AbstractPokemonSpec {
   }
 
   test("Two Pokémon with the same parameters should be equal") {
-    val salandit2 = new Pokemon(salanditName, salanditHp, salanditStr)
-    salandit should not be theSameInstanceAs(salandit2)
-    salandit shouldBe salandit2
-    val scolipede2 = new Pokemon(scolipedeName, scolipedeHp, scolipedeStr)
-    scolipede should not be theSameInstanceAs(scolipede2)
-    scolipede shouldBe scolipede2
+    forAll { (name: String, hp: Int, str: Int) =>
+      whenever(hp in Range(1, 1000) && str > 0 && str < 100000) {
+        val pokemon1 = new Pokemon(name, hp, str)
+        val pokemon2 = new Pokemon(name, hp, str)
+        pokemon1 should not be theSameInstanceAs(pokemon2)
+        pokemon1 shouldEqual pokemon2
+      }
+    }
   }
 
   test("Two Pokémon with different parameters should not be equal") {
