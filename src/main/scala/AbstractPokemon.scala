@@ -19,6 +19,18 @@ abstract class AbstractPokemon(
     pokemon.currentHp -= strength / 10
   }
 
+  protected def normalDamageFrom(pokemon: Pokemon): Unit = {
+    currentHp -= pokemon.strength / 10
+  }
+
+  protected def resistantDamageFrom(pokemon: Pokemon): Unit = {
+    pokemon.currentHp -= strength / 10 / 2
+  }
+
+  protected def weaknessDamageFrom(pokemon: Pokemon): Unit = {
+    pokemon.currentHp -= strength / 10 * 3 / 2
+  }
+
   def isKo: Boolean = {
     _currentHp == 0
   }

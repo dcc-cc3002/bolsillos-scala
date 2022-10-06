@@ -9,4 +9,10 @@ trait Pokemon {
   def attack(other: Pokemon): Unit
 
   def isKo: Boolean
+
+  def receiveWaterAttack(waterPokemon: WaterPokemon): Unit
+
+  def receiveFireAttack(firePokemon: FirePokemon): Unit
+
+  def receiveGrassAttack(grassPokemon: GrassPokemon): Unit
 }
